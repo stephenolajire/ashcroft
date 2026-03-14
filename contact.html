@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#38BDF8", // Sky Blue
+                        "background-light": "#f8fafd", // Refined Light Sky
+                        "background-dark": "#142032", // Deep Navy
+                        "navy": "#142032",
+                    },
+                    fontFamily: {
+                        "display": ["Cormorant Garamond", "serif"],
+                        "body": ["DM Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'DM Sans', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; }
+        .custom-cursor {
+            width: 8px;
+            height: 8px;
+            background: #38BDF8;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        .form-input-refined {
+            border: none;
+            border-bottom: 1px solid #cbd5e1;
+            background: transparent;
+            padding-left: 0;
+            padding-right: 0;
+            transition: border-color 0.3s ease;
+        }
+        .form-input-refined:focus {
+            outline: none;
+            border-bottom-color: #38BDF8;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-navy dark:text-slate-100 selection:bg-primary/30">
+<div class="custom-cursor hidden md:block"></div>
+<nav class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<!-- <span class="material-symbols-outlined text-primary text-3xl">medical_services</span> -->
+<h1 class="text-2xl font-bold tracking-tight text-navy dark:text-white">Ashcroft <span class="font-light italic text-primary">Physio</span></h1>
+</div>
+<div class="hidden md:flex items-center gap-10">
+<div class="hidden md:flex items-center space-x-10 text-sm font-medium uppercase tracking-widest">
+<a class="hover:text-brand-sky transition-colors" href="/index.html">Home</a>
+<a class="hover:text-brand-sky transition-colors" href="">About</a>
+<a class="hover:text-brand-sky transition-colors" href="">Service</a>
+<a class="hover:text-brand-sky transition-colors" href="/fees.html">Fees</a>
+<a class="hover:text-brand-sky transition-colors" href="/contact.html">Contact</a>
+<a class="hover:text-brand-sky transition-colors" href="">Gallery</a>
+<button class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full text-sm font-bold transition-all shadow-lg shadow-primary/20">BOOK ONLINE</button>
+</div>
+</div>
+</nav>
+<header class="relative py-24 md:py-32 overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent"></div>
+<div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+<span class="text-primary font-bold tracking-[0.3em] uppercase text-sm mb-4 block">Reach Out</span>
+<h1 class="text-5xl md:text-7xl mb-6">Get in Touch</h1>
+<p class="text-lg md:text-xl text-navy/60 dark:text-slate-400 font-light leading-relaxed max-w-2xl mx-auto">
+                Begin your journey to recovery with London's premier physiotherapy specialists. Our team is here to provide clinical excellence in a refined, supportive environment.
+            </p>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 pb-24">
+<div class="grid lg:grid-cols-2 gap-20">
+<!-- Left: Contact Form -->
+<section class="bg-white dark:bg-white/5 p-8 md:p-12 rounded-xl shadow-sm">
+<h3 class="text-3xl mb-8">Consultation Inquiry</h3>
+<form class="space-y-8">
+<div class="grid md:grid-cols-2 gap-8">
+<div class="flex flex-col gap-2">
+<label class="text-xs font-bold uppercase tracking-widest text-navy/40 dark:text-slate-500">Full Name</label>
+<input class="form-input-refined w-full py-2 dark:text-white" placeholder="Jane Doe" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-xs font-bold uppercase tracking-widest text-navy/40 dark:text-slate-500">Email Address</label>
+<input class="form-input-refined w-full py-2 dark:text-white" placeholder="jane@example.com" type="email"/>
+</div>
+</div>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="flex flex-col gap-2">
+<label class="text-xs font-bold uppercase tracking-widest text-navy/40 dark:text-slate-500">Phone Number</label>
+<input class="form-input-refined w-full py-2 dark:text-white" placeholder="+44 7000 000000" type="tel"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-xs font-bold uppercase tracking-widest text-navy/40 dark:text-slate-500">Service Interest</label>
+<select class="form-input-refined w-full py-2 bg-transparent dark:text-white">
+<option>Physiotherapy</option>
+<option>Sports Massage</option>
+<option>Post-Op Rehab</option>
+<option>Pilates</option>
+</select>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-xs font-bold uppercase tracking-widest text-navy/40 dark:text-slate-500">Message</label>
+<textarea class="form-input-refined w-full py-2 resize-none dark:text-white" placeholder="How can we help you?" rows="4"></textarea>
+</div>
+<button class="w-full bg-navy dark:bg-primary text-white font-bold py-5 rounded-lg hover:opacity-90 transition-opacity tracking-widest uppercase">Send Inquiry</button>
+</form>
+</section>
+<!-- Right: Location Details -->
+<section class="flex flex-col justify-center gap-12">
+<div>
+<h3 class="text-3xl mb-6">Our Locations</h3>
+<p class="text-navy/60 dark:text-slate-400 font-light mb-10">Choose between our central London flagship or our serene riverside studio.</p>
+</div>
+<div class="space-y-12">
+<div class="flex gap-6 group">
+<div class="w-12 h-12 rounded-full border border-primary/30 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div>
+<h4 class="text-xl font-bold mb-2">Marylebone Hub</h4>
+<p class="text-navy/60 dark:text-slate-400 leading-relaxed italic mb-2">Flagship Medical Centre</p>
+<p class="text-navy/80 dark:text-slate-300 font-light">12 Harley Street, Marylebone<br/>London W1G 9PG</p>
+<p class="mt-4 text-primary font-medium">+44 (0) 20 7123 4567</p>
+</div>
+</div>
+<div class="flex gap-6 group">
+<div class="w-12 h-12 rounded-full border border-primary/30 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div>
+<h4 class="text-xl font-bold mb-2">Richmond Hub</h4>
+<p class="text-navy/60 dark:text-slate-400 leading-relaxed italic mb-2">Sports Performance Studio</p>
+<p class="text-navy/80 dark:text-slate-300 font-light">45 Hill Rise, Richmond<br/>London TW10 6UB</p>
+<p class="mt-4 text-primary font-medium">+44 (0) 20 8987 6543</p>
+</div>
+</div>
+<div class="pt-8 border-t border-primary/10">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">mail</span>
+<span class="text-lg font-light">hello@ashcroftphysio.com</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<section class="mt-24">
+<div class="w-full h-[450px] rounded-2xl overflow-hidden shadow-2xl relative grayscale hover:grayscale-0 transition-all duration-700">
+<div class="absolute inset-0 bg-navy/10 pointer-events-none"></div>
+<img class="w-full h-full object-cover" data-alt="Desaturated luxury map showing London clinics" data-location="London, Marylebone" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQDpN9iakpGNWnMe-YFT4dffuJ4nWMztwasv8plJJffWPddOs8KH5y1bCRKGE2ULgcVqeTOS1aiP9vxbp8dOLm34jTkJUWV2XBdMqqDET1SkBZ04qPhbK-OtAV-KdN6oSQtrTZbyETEzP5EhAbJP4fGjlqiBKHHI9EekWrAmKTvMkMxyPEdezTR8oCWQcGA0wamNohK6c7xYD4CBXBngtCVlBebY2_g5rAJVuJV22tN1MzKygbgB5Sq2jkVZH9G3Mmy1InDTiNx0s"/>
+</div>
+</section>
+<section class="mt-32 max-w-3xl mx-auto">
+<h2 class="text-4xl text-center mb-16 italic">Frequently Asked Questions</h2>
+<div class="space-y-8">
+<div class="border-b border-primary/10 pb-6">
+<h4 class="text-xl font-bold mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">circle</span>
+                        Do you accept private medical insurance?
+                    </h4>
+<p class="text-navy/60 dark:text-slate-400 font-light pl-6">Yes, we are registered with all major providers including Bupa, AXA Health, and Vitality. Please provide your authorization code when booking.</p>
+</div>
+<div class="border-b border-primary/10 pb-6">
+<h4 class="text-xl font-bold mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">circle</span>
+                        Is there parking available?
+                    </h4>
+<p class="text-navy/60 dark:text-slate-400 font-light pl-6">Our Marylebone site has metered street parking. The Richmond Hub offers complimentary on-site parking for all clients.</p>
+</div>
+<div class="border-b border-primary/10 pb-6">
+<h4 class="text-xl font-bold mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">circle</span>
+                        How long is an initial assessment?
+                    </h4>
+<p class="text-navy/60 dark:text-slate-400 font-light pl-6">We allow 60 minutes for initial consultations to ensure a comprehensive evaluation and start of treatment.</p>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-navy text-white pt-24 pb-12">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid md:grid-cols-4 gap-12 mb-16">
+<div class="col-span-1 md:col-span-2">
+<h2 class="text-3xl mb-6">Ashcroft <span class="text-primary italic">Physio</span></h2>
+<p class="text-slate-400 font-light max-w-sm">Elevating standard care to clinical excellence. Boutique physiotherapy services in the heart of London.</p>
+</div>
+<div>
+<h5 class="text-xs font-bold uppercase tracking-widest text-primary mb-6">Explore</h5>
+<ul class="space-y-4 text-slate-300 font-light">
+<li><a class="hover:text-primary transition-colors" href="#">Our Approach</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Treatments</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Pricing</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-xs font-bold uppercase tracking-widest text-primary mb-6">Social</h5>
+<ul class="space-y-4 text-slate-300 font-light">
+<li><a class="hover:text-primary transition-colors" href="#">Instagram</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">LinkedIn</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Twitter</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-light text-slate-500 tracking-widest">
+<p>© 2024 ASHCROFT PHYSIOTHERAPY CLINIC. ALL RIGHTS RESERVED.</p>
+<div class="flex gap-8">
+<a class="hover:text-primary transition-colors" href="#">PRIVACY POLICY</a>
+<a class="hover:text-primary transition-colors" href="#">TERMS OF SERVICE</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
