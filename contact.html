@@ -13,9 +13,9 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#38BDF8", // Sky Blue
-                        "background-light": "#f8fafd", // Refined Light Sky
-                        "background-dark": "#142032", // Deep Navy
+                        "primary": "#38BDF8",
+                        "background-light": "#f8fafd",
+                        "background-dark": "#142032",
                         "navy": "#142032",
                     },
                     fontFamily: {
@@ -30,9 +30,9 @@
 <style>
         body { font-family: 'DM Sans', sans-serif; }
         h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; }
+
         .custom-cursor {
-            width: 8px;
-            height: 8px;
+            width: 8px; height: 8px;
             background: #38BDF8;
             border-radius: 50%;
             position: fixed;
@@ -43,8 +43,7 @@
             border: none;
             border-bottom: 1px solid #cbd5e1;
             background: transparent;
-            padding-left: 0;
-            padding-right: 0;
+            padding-left: 0; padding-right: 0;
             transition: border-color 0.3s ease;
         }
         .form-input-refined:focus {
@@ -52,28 +51,112 @@
             border-bottom-color: #38BDF8;
             box-shadow: none;
         }
+
+        /* ── Mobile Menu ── */
+        #mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        #mobile-menu.open { transform: translateX(0); }
+
+        #hamburger .bar {
+            display: block;
+            width: 24px; height: 2px;
+            background: #142032;
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            transform-origin: center;
+        }
+        #hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        #hamburger.active .bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        #hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+        #mobile-menu a, #mobile-menu .book-btn {
+            opacity: 0;
+            transform: translateX(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease, color 0.2s;
+        }
+        #mobile-menu.open a,
+        #mobile-menu.open .book-btn { opacity: 1; transform: translateX(0); }
+        #mobile-menu.open a:nth-child(1) { transition-delay: 0.08s; }
+        #mobile-menu.open a:nth-child(2) { transition-delay: 0.13s; }
+        #mobile-menu.open a:nth-child(3) { transition-delay: 0.18s; }
+        #mobile-menu.open a:nth-child(4) { transition-delay: 0.23s; }
+        #mobile-menu.open a:nth-child(5) { transition-delay: 0.28s; }
+        #mobile-menu.open a:nth-child(6) { transition-delay: 0.33s; }
+        #mobile-menu.open .book-btn      { transition-delay: 0.38s; }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-navy dark:text-slate-100 selection:bg-primary/30">
 <div class="custom-cursor hidden md:block"></div>
+
+<!-- ── Nav ── -->
 <nav class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
-<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-<div class="flex items-center gap-2">
-<!-- <span class="material-symbols-outlined text-primary text-3xl">medical_services</span> -->
-<h1 class="text-2xl font-bold tracking-tight text-navy dark:text-white">Ashcroft <span class="font-light italic text-primary">Physio</span></h1>
-</div>
-<div class="hidden md:flex items-center gap-10">
-<div class="hidden md:flex items-center space-x-10 text-sm font-medium uppercase tracking-widest">
-<a class="hover:text-brand-sky transition-colors" href="/index.html">Home</a>
-<a class="hover:text-brand-sky transition-colors" href="">About</a>
-<a class="hover:text-brand-sky transition-colors" href="">Service</a>
-<a class="hover:text-brand-sky transition-colors" href="/fees.html">Fees</a>
-<a class="hover:text-brand-sky transition-colors" href="/contact.html">Contact</a>
-<a class="hover:text-brand-sky transition-colors" href="">Gallery</a>
-<button class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full text-sm font-bold transition-all shadow-lg shadow-primary/20">BOOK ONLINE</button>
-</div>
-</div>
+  <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+
+    <!-- Logo -->
+    <div class="flex items-center gap-2">
+      <h1 class="text-2xl font-bold tracking-tight text-navy dark:text-white">
+        Ashcroft <span class="font-light italic text-primary">Physio</span>
+      </h1>
+    </div>
+
+    <!-- Desktop Links -->
+    <div class="hidden md:flex items-center space-x-10 text-sm font-medium uppercase tracking-widest">
+      <a class="hover:text-primary transition-colors" href="/index.html">Home</a>
+      <a class="hover:text-primary transition-colors" href="">About</a>
+      <a class="hover:text-primary transition-colors" href="">Service</a>
+      <a class="hover:text-primary transition-colors" href="/fees.html">Fees</a>
+      <a class="text-primary font-bold" href="/contact.html">Contact</a>
+      <a class="hover:text-primary transition-colors" href="">Gallery</a>
+      <button class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full text-sm font-bold transition-all shadow-lg shadow-primary/20">BOOK ONLINE</button>
+    </div>
+
+    <!-- Hamburger (mobile only) -->
+    <button
+      id="hamburger"
+      class="md:hidden flex flex-col justify-center items-center gap-[6px] w-10 h-10 focus:outline-none z-[60] relative"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </div>
 </nav>
+
+<!-- ── Mobile Menu Panel ── -->
+<div
+  id="mobile-menu"
+  class="fixed top-0 right-0 h-full w-[80%] max-w-sm bg-white dark:bg-background-dark z-[55] shadow-2xl flex flex-col px-8 pt-28 pb-12"
+  aria-hidden="true"
+>
+  <!-- Accent stripe -->
+  <div class="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-primary via-sky-300 to-transparent"></div>
+
+  <nav class="flex flex-col space-y-1 flex-1">
+    <a class="text-navy/80 dark:text-slate-200 hover:text-primary font-medium uppercase tracking-widest text-sm py-4 border-b border-slate-100 dark:border-slate-800" href="/index.html">Home</a>
+    <a class="text-navy/80 dark:text-slate-200 hover:text-primary font-medium uppercase tracking-widest text-sm py-4 border-b border-slate-100 dark:border-slate-800" href="">About</a>
+    <a class="text-navy/80 dark:text-slate-200 hover:text-primary font-medium uppercase tracking-widest text-sm py-4 border-b border-slate-100 dark:border-slate-800" href="">Services</a>
+    <a class="text-navy/80 dark:text-slate-200 hover:text-primary font-medium uppercase tracking-widest text-sm py-4 border-b border-slate-100 dark:border-slate-800" href="/fees.html">Fees</a>
+    <a class="text-primary font-bold uppercase tracking-widest text-sm py-4 border-b border-slate-100 dark:border-slate-800" href="/contact.html">Contact</a>
+    <a class="text-navy/80 dark:text-slate-200 hover:text-primary font-medium uppercase tracking-widest text-sm py-4 border-b border-slate-100 dark:border-slate-800" href="">Gallery</a>
+  </nav>
+
+  <a href="#" class="book-btn block mt-8 px-8 py-4 bg-primary text-white text-xs font-bold uppercase tracking-widest text-center rounded-full hover:bg-primary/90 transition-all shadow-lg shadow-primary/20">
+    Book Online
+  </a>
+  <p class="mt-6 text-[10px] uppercase tracking-widest text-navy/40 dark:text-slate-500 text-center">hello@ashcroftphysio.com</p>
+</div>
+
+<!-- Backdrop -->
+<div
+  id="menu-backdrop"
+  class="fixed inset-0 bg-navy/40 backdrop-blur-sm z-[54] hidden"
+  aria-hidden="true"
+></div>
+
+<!-- ── Page Content ── -->
 <header class="relative py-24 md:py-32 overflow-hidden">
 <div class="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent"></div>
 <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
@@ -84,6 +167,7 @@
             </p>
 </div>
 </header>
+
 <main class="max-w-7xl mx-auto px-6 pb-24">
 <div class="grid lg:grid-cols-2 gap-20">
 <!-- Left: Contact Form -->
@@ -160,12 +244,14 @@
 </div>
 </section>
 </div>
+
 <section class="mt-24">
 <div class="w-full h-[450px] rounded-2xl overflow-hidden shadow-2xl relative grayscale hover:grayscale-0 transition-all duration-700">
 <div class="absolute inset-0 bg-navy/10 pointer-events-none"></div>
-<img class="w-full h-full object-cover" data-alt="Desaturated luxury map showing London clinics" data-location="London, Marylebone" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQDpN9iakpGNWnMe-YFT4dffuJ4nWMztwasv8plJJffWPddOs8KH5y1bCRKGE2ULgcVqeTOS1aiP9vxbp8dOLm34jTkJUWV2XBdMqqDET1SkBZ04qPhbK-OtAV-KdN6oSQtrTZbyETEzP5EhAbJP4fGjlqiBKHHI9EekWrAmKTvMkMxyPEdezTR8oCWQcGA0wamNohK6c7xYD4CBXBngtCVlBebY2_g5rAJVuJV22tN1MzKygbgB5Sq2jkVZH9G3Mmy1InDTiNx0s"/>
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQDpN9iakpGNWnMe-YFT4dffuJ4nWMztwasv8plJJffWPddOs8KH5y1bCRKGE2ULgcVqeTOS1aiP9vxbp8dOLm34jTkJUWV2XBdMqqDET1SkBZ04qPhbK-OtAV-KdN6oSQtrTZbyETEzP5EhAbJP4fGjlqiBKHHI9EekWrAmKTvMkMxyPEdezTR8oCWQcGA0wamNohK6c7xYD4CBXBngtCVlBebY2_g5rAJVuJV22tN1MzKygbgB5Sq2jkVZH9G3Mmy1InDTiNx0s"/>
 </div>
 </section>
+
 <section class="mt-32 max-w-3xl mx-auto">
 <h2 class="text-4xl text-center mb-16 italic">Frequently Asked Questions</h2>
 <div class="space-y-8">
@@ -193,6 +279,7 @@
 </div>
 </section>
 </main>
+
 <footer class="bg-navy text-white pt-24 pb-12">
 <div class="max-w-7xl mx-auto px-6">
 <div class="grid md:grid-cols-4 gap-12 mb-16">
@@ -227,4 +314,50 @@
 </div>
 </div>
 </footer>
+
+<script>
+    // ── Custom Cursor ──
+    const cursor = document.querySelector('.custom-cursor');
+    window.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top  = e.clientY + 'px';
+    });
+
+    // ── Hamburger / Mobile Menu ──
+    const hamburger  = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const backdrop   = document.getElementById('menu-backdrop');
+
+    function openMenu() {
+      mobileMenu.classList.add('open');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+      backdrop.classList.remove('hidden');
+      hamburger.classList.add('active');
+      hamburger.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      backdrop.classList.add('hidden');
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.contains('open') ? closeMenu() : openMenu();
+    });
+
+    backdrop.addEventListener('click', closeMenu);
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+</script>
 </body></html>
